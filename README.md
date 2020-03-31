@@ -13,7 +13,7 @@ Run without arguments to maximize the terminal size for the current window and p
 
 Use flag `-h` for other options:
 
-```sh
+```
 Usage of remax:
   -changelog
         display change history
