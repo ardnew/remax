@@ -15,11 +15,11 @@ go get -v github.com/ardnew/remax
 Or download one of the pre-compiled executables:
 
 ||Linux|
-|-|-----|
-|i386||
-|x86_64||
-|ARM||
-|ARM64||
+|-:|-----|
+|**i386**||
+|**x86_64**||
+|**ARM**||
+|**ARM64**||
 
 
 ## Usage
