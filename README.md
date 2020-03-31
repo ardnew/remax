@@ -1,17 +1,31 @@
 # remax
 #### Maximize serial terminal based on current window size
 
-Often when logged into a Linux system via serial UART, user applications fail to recognize the available area of the client terminal window. In particular, if `stty size` reports incorrect dimensions, you can expect some applications to misbehave.
+The `remax` command will reconfigure a serial terminal to use the full height and width of the containing window. It does not resize your window — it just modifies the terminal mode settings so that applications (`vim`, `less`, etc.) can utilize all available space.
 
-This application will attempt to determine the maximum size available and update the serial terminal line settings automatically.
+Distributed as a statically-linked ELF executable with no dependencies (X11, Python, or even Go). It is also **very fast**.
 
-This utility is compiled as a static executable, so no dependencies — X11, Python, or even Go (after building, of course) — are required. This makes it convenient for embedded Linux with minimal resources, just copy the executable to your target. See [Cross-Compiling](#cross-compiling) for more info.
+
+## Installation
+Either use the Go package manager if you have Go installed:
+```sh
+go get -v github.com/ardnew/remax
+```
+
+Or download one of the pre-compiled executables:
+
+||Linux|
+|-|-----|
+|i386||
+|x86_64||
+|ARM||
+|ARM64||
 
 
 ## Usage
 Run without arguments to maximize the terminal size for the current window and print its new dimensions.
 
-Use flag `-h` for other options:
+See flag `-h` for other options:
 
 ```sh
 Usage of remax:
@@ -25,33 +39,30 @@ Usage of remax:
         display version information
 ```
 
-## Installation
-Either use the Go package manager:
-```sh
-go get github.com/ardnew/remax
-```
-Or clone this repo and build/install manually:
+
+## Purpose
+
+Often when logged into a Linux system via serial UART, user applications fail to recognize the available area of the client terminal window. In particular, if `stty size` reports incorrect dimensions, you can expect some applications to misbehave.
+
+Since it is compiled as a static executable, no dependencies — X11, Python, or even Go (after building, of course) — are required. And being a true executable, it runs much faster than an interpreted script implementation. This makes it convenient for embedded Linux with minimal resources, just copy the executable to your target. See [Cross-Compiling](#cross-compiling) for more info.
+
+
+## Cross-Compiling
+
+#### GNU Make
+A [Makefile](Makefile) is provided that compiles and packages a tarball for all supported platforms using the default `all` target (i.e. just run `make` without arguments).
+
+#### Manual
+If you want to build the utility yourself for a barebones embedded target without installing a full Go distribution, you will need to cross-compile for that target.
+
+For example, to build for a Raspberry Pi 3/4 running Raspbian (32-bit ARM) from another host (where Go is installed):
 ```sh
 git clone https://github.com/ardnew/remax.git $GOPATH/src/github.com/ardnew/remax
 cd $GOPATH/src/github.com/ardnew/remax
-go install
+GOOS=linux GOARCH=arm go install
 # or: go build && cp remax /usr/local/bin
 ```
 
-## Cross-Compiling
-If you want to use the utility on a barebones embedded target without installing a full Go distribution, you will need to cross-compile for that target.
-
-For example, to build for a Raspberry Pi 3 or 4 running Raspbian (which is 32-bit only), just set the appropriate environment variables:
-```sh
-GOOS=linux GOARCH=arm GOARM=7 go build github.com/ardnew/remax
-```
-
-If you are targeting 64-bit ARM, use `GOARCH=arm64` and leave `GOARM` unspecified.
-
-Running `go tool dist list` will print a list of valid GOARCH/GOOS combinations supported by your Go installation.
-
-Alternatively, you can view a list of available target architectures and operating systems here:
-- https://golang.org/doc/install/source#environment
 
 ## Credits
 Details of approach and inspiration for this utility comes from Akkana Peck ([@akkana](https://github.com/akkana), thanks!)
