@@ -12,14 +12,14 @@ Either use the Go package manager if you have Go installed:
 go get -v github.com/ardnew/remax
 ```
 
-Or download one of the pre-compiled executables:
+Or download the latest pre-compiled executable:
 
 ||Linux|
-|-:|-----|
-|**i386**||
-|**x86_64**||
-|**ARM**||
-|**ARM64**||
+|-:|:-----:|
+|**i386**|[remax-0.1.0-386.tar.gz](https://github.com/ardnew/remax/releases/download/v0.1.0/remax-0.1.0-386.tar.gz)|
+|**x86_64**|[remax-0.1.0-amd64.tar.gz](https://github.com/ardnew/remax/releases/download/v0.1.0/remax-0.1.0-amd64.tar.gz)|
+|**ARM**|[remax-0.1.0-arm.tar.gz](https://github.com/ardnew/remax/releases/download/v0.1.0/remax-0.1.0-arm.tar.gz)|
+|**ARM64**|[remax-0.1.0-arm64.tar.gz](https://github.com/ardnew/remax/releases/download/v0.1.0/remax-0.1.0-arm64.tar.gz)|
 
 
 ## Usage
