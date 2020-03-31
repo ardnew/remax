@@ -9,7 +9,21 @@ This utility is compiled as a static executable, so no dependencies — X11, Pyt
 
 
 ## Usage
-Use flag `-h` for a list of available options.
+Run without arguments to maximize the terminal size for the current window and print its new dimensions.
+
+Use flag `-h` for other options:
+
+```sh
+Usage of remax:
+  -changelog
+        display change history
+  -p    print terminal size without changing it
+  -q    suppress all non-error output
+  -t duration
+        read timeout in response to ANSI sequence (default 2s)
+  -version
+        display version information
+```
 
 ## Installation
 Either use the Go package manager:
@@ -32,7 +46,7 @@ For example, to build for a Raspberry Pi 3 or 4 running Raspbian (which is 32-bi
 GOOS=linux GOARCH=arm GOARM=7 go build github.com/ardnew/remax
 ```
 
-If you are targeting 64-bit ARM, use `GOARCH=arm64` and leave `GOARM` unspecified. 
+If you are targeting 64-bit ARM, use `GOARCH=arm64` and leave `GOARM` unspecified.
 
 Running `go tool dist list` will print a list of valid GOARCH/GOOS combinations supported by your Go installation.
 
